@@ -27,14 +27,14 @@
     finishDistance: 100,
     horseStartPx: 10,
     finishBufferPx: 14,
-    aiTickMs: 500,
+    aiTickMs: 600,
     playerMoveBase: 8,
     playerFastBonusMax: 5,
     playerWrongPenalty: 1.5,
     aiRacers: [
-      { id: "ai-1", name: "AI Blaze", base: 2.9, variance: 1.6 },
-      { id: "ai-2", name: "AI Comet", base: 2.6, variance: 1.9 },
-      { id: "ai-3", name: "AI Thunder", base: 3.0, variance: 1.4 },
+      { id: "ai-1", name: "AI Blaze", base: 2.3, variance: 1.3 },
+      { id: "ai-2", name: "AI Comet", base: 2.1, variance: 1.5 },
+      { id: "ai-3", name: "AI Thunder", base: 2.4, variance: 1.2 },
     ],
   };
 
@@ -191,7 +191,7 @@
 
     config.aiRacers.forEach((ai) => {
       const randomSwing = (Math.random() - 0.5) * ai.variance * 2;
-      const moveAmount = clamp(ai.base + randomSwing, 0.8, 5.2);
+      const moveAmount = clamp(ai.base + randomSwing, 0.7, 4.2);
       state.distances[ai.id] += moveAmount;
     });
 
