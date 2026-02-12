@@ -4,6 +4,8 @@
  */
 (() => {
   const UI = {
+    track: document.getElementById("track"),
+    finishLine: document.querySelector(".finish-line"),
     question: document.getElementById("questionText"),
     answerForm: document.getElementById("answerForm"),
     answerInput: document.getElementById("answerInput"),
@@ -23,6 +25,8 @@
 
   const config = {
     finishDistance: 100,
+    horseStartPx: 10,
+    finishBufferPx: 14,
     aiTickMs: 500,
     playerMoveBase: 8,
     playerFastBonusMax: 5,
@@ -115,9 +119,16 @@
   }
 
   function renderHorses() {
+    const finishLineLeft = UI.finishLine.offsetLeft;
     Object.entries(state.distances).forEach(([id, distance]) => {
-      const percent = clamp((distance / config.finishDistance) * 100, 0, 100);
-      UI.horses[id].style.transform = `translate(${percent}%, -50%)`;
+      const horse = UI.horses[id];
+      const progress = clamp(distance / config.finishDistance, 0, 1);
+      const maxTravel = Math.max(
+        config.horseStartPx,
+        finishLineLeft - horse.offsetWidth + config.finishBufferPx
+      );
+      const nextLeft = config.horseStartPx + progress * (maxTravel - config.horseStartPx);
+      horse.style.left = `${nextLeft}px`;
     });
   }
 
@@ -264,6 +275,7 @@
   UI.answerForm.addEventListener("submit", handleAnswerSubmit);
   UI.startBtn.addEventListener("click", startRace);
   UI.restartBtn.addEventListener("click", resetRace);
+  window.addEventListener("resize", renderHorses);
 
   // Ensure Enter key works naturally for submission on focused input.
   UI.answerInput.addEventListener("keydown", (event) => {

@@ -132,7 +132,7 @@ button:disabled {
 
 .finish-line {
   position: absolute;
-  right: 9%;
+  right: 8%;
   top: 0;
   bottom: 0;
   width: 8px;
@@ -169,11 +169,12 @@ button:disabled {
 .horse {
   position: absolute;
   top: 50%;
-  left: 8px;
-  transform: translate(0, -50%);
-  font-size: 2rem;
-  transition: transform 220ms ease-out;
-  will-change: transform;
+  left: 0;
+  transform: translateY(-50%) scaleX(-1);
+  font-size: 2.2rem;
+  transition: left 260ms ease-out;
+  will-change: left;
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.18));
 }
 
 .status-correct {
@@ -210,6 +211,6 @@ button:disabled {
   }
 
   .horse {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
   }
 }
