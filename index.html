@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cheltenham Horse Race Maths Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="game-header">
+        <h1>🐎 Cheltenham Maths Sprint</h1>
+        <p>Solve quickly to boost your horse and beat the AI!</p>
+      </header>
 
+      <section class="controls-panel">
+        <div class="question-block">
+          <p class="label">Question</p>
+          <p id="questionText" class="question-text">Press <strong>Start Race</strong> to begin!</p>
+        </div>
+
+        <form id="answerForm" class="answer-form" autocomplete="off">
+          <label for="answerInput" class="sr-only">Answer</label>
+          <input
+            id="answerInput"
+            type="number"
+            inputmode="numeric"
+            placeholder="Type answer"
+            disabled
+            required
+          />
+          <button id="submitBtn" type="submit" disabled>Submit</button>
+        </form>
+
+        <div class="action-row">
+          <button id="startBtn" type="button">Start Race</button>
+          <button id="restartBtn" type="button" disabled>Restart</button>
+        </div>
+
+        <div class="status-grid" aria-live="polite">
+          <p><strong>Status:</strong> <span id="statusText">Waiting to start…</span></p>
+          <p><strong>Difficulty:</strong> <span id="difficultyText">Easy</span></p>
+          <p><strong>Last time:</strong> <span id="timeText">—</span></p>
+        </div>
+      </section>
+
+      <section class="track-wrap" aria-label="Race track">
+        <div id="track" class="track">
+          <div class="finish-line" aria-hidden="true">🏁</div>
+
+          <div class="lane" data-horse="player">
+            <span class="lane-label">You</span>
+            <div class="horse" id="horse-player" role="img" aria-label="Your horse">🐴</div>
+          </div>
+
+          <div class="lane" data-horse="ai-1">
+            <span class="lane-label">AI Blaze</span>
+            <div class="horse" id="horse-ai-1" role="img" aria-label="AI horse 1">🐎</div>
+          </div>
+
+          <div class="lane" data-horse="ai-2">
+            <span class="lane-label">AI Comet</span>
+            <div class="horse" id="horse-ai-2" role="img" aria-label="AI horse 2">🐎</div>
+          </div>
+
+          <div class="lane" data-horse="ai-3">
+            <span class="lane-label">AI Thunder</span>
+            <div class="horse" id="horse-ai-3" role="img" aria-label="AI horse 3">🐎</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
